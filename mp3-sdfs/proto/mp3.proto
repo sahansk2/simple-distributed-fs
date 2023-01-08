@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto/";
+
+service Master {
+  rpc GetReplicas(FileInfo) returns (stream ReplicaInfo) {}
+  rpc GetReplicasNonQuorum(FileInfo) returns (stream ReplicaInfo) {}
+  rpc FinalizeWrite(FileAndQuorumInfo) returns (Status) {}
+  rpc FinalizeDelete(FileInfo) returns (Status) {}
+}
+
+service Replica {
+}
+
+message Status {
+  string rc = 1;
+}
+
+message FileAndQuorumInfo {
+  FileInfo args = 1;
+  repeated ReplicaInfo quorum = 2;
+}
+
+message FileInfo {
+  string sdfsname = 1;
+  string contentHash = 2;
+}
+
+message ReplicaInfo {
+  string name = 1;
+  uint32 port = 2;
+  string memberid = 3;
+}
+
+

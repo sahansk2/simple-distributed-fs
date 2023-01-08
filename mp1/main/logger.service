@@ -1,0 +1,14 @@
+[Unit]
+Description=Loggers always running with systemd
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/env /home/sahan/logger
+WorkingDirectory=/home/sahan
+
+[Install]
+WantedBy=multi-user.target

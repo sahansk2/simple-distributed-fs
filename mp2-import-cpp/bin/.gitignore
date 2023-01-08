@@ -1,0 +1,5 @@
+# Credit to https://stackoverflow.com/questions/4250063/how-to-gitignore-all-files-folder-in-a-folder-but-not-the-folder-itself
+# Keeps the bin folder but ignores contents
+
+*
+!.gitignore
